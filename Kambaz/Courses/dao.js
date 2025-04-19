@@ -1,8 +1,8 @@
-import Database from "../Database/index.js";
+import model from "./model.js";
 import { v4 as uuidv4 } from "uuid";
 
 export function findAllCourses() {
-  return Database.courses;
+  return model.find();
 }
 
 export function findCoursesForEnrolledUser(userId) {
@@ -18,8 +18,7 @@ export function findCoursesForEnrolledUser(userId) {
 
 export function createCourse(course) {
   const newCourse = { ...course, _id: uuidv4() };
-  Database.courses = [...Database.courses, newCourse];
-  return newCourse;
+  return model.create(newCourse);
 }
 
 export function deleteCourse(courseId) {
